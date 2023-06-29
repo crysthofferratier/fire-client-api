@@ -3,8 +3,6 @@ import hashlib
 import requests 
 import json
 
-import os
-
 class Authentication:
     URL = "https://api.fire.com/business/v1/"
     
@@ -14,7 +12,7 @@ class Authentication:
         return hashlib.sha256(SECRET.encode()).hexdigest()
 
 
-    def get_access_token(self) -> str:
+    def get_access_token(self) -> str:        
         NONCE = int(time())
         APP_DETAILS = json.load(open("app_details.json"))
         
