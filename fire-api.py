@@ -13,7 +13,6 @@ APP_DETAILS = {
     "refresh_token": "x"
 }
 
-
 NONCE = int(time())
 SECRET = "{nonce}{client_key}".format(nonce=NONCE, client_key=APP_DETAILS["client_key"])
 SECRET_256 = hashlib.sha256(SECRET.encode()).hexdigest()
@@ -30,16 +29,16 @@ data1 = {
 
 response = requests.post(URL, json=data1, headers={"Content-type": "application/json"}).json()
 
-ACCESS_TOEKN = response["accessToken"]
+ACCESS_TOKEN = response["accessToken"]
 
-r = requests.get("https://api.fire.com/business/v1/accounts", headers={"Authorization": "Bearer {access_token}".format(access_token=ACCESS_TOEKN)}).json()
-
-print(r)
-
-r = requests.get("https://api.fire.com/business/v1/users", headers={"Authorization": "Bearer {access_token}".format(access_token=ACCESS_TOEKN)}).json()
+r = requests.get("https://api.fire.com/business/v1/accounts", headers={"Authorization": "Bearer {access_token}".format(access_token=ACCESS_TOKEN)}).json()
 
 print(r)
 
-r = requests.get("https://api.fire.com/business/v1/cards", headers={"Authorization": "Bearer {access_token}".format(access_token=ACCESS_TOEKN)}).json()
+r = requests.get("https://api.fire.com/business/v1/users", headers={"Authorization": "Bearer {access_token}".format(access_token=ACCESS_TOKEN)}).json()
+
+print(r)
+
+r = requests.get("https://api.fire.com/business/v1/cards", headers={"Authorization": "Bearer {access_token}".format(access_token=ACCESS_TOKEN)}).json()
 
 print(r)
